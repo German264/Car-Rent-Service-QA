@@ -18,6 +18,7 @@ public class ApplicationManager {
 
     public void init() {
         String browser = System.getProperty("browser", "chrome");
+
         // Проверяет значение переменной browser и в зависимости от результата инициализирует нужный драйвер
         switch (browser.toLowerCase()) {
             case "firefox":
