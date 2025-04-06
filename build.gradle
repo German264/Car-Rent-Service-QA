@@ -10,10 +10,14 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.30.0'      // Selenium
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'       // WebDriverManager
+    implementation 'org.slf4j:slf4j-nop:2.0.7'                          // SLF4J логгер
+    testImplementation 'org.testng:testng:7.11.0'                      // TestNG
+}
 
-    implementation 'org.seleniumhq.selenium:selenium-java:4.30.0'// зависимость от Selenium
-    implementation 'org.testng:testng:7.11.0' // зависимость от TestNG
-    implementation 'org.slf4j:slf4j-nop:2.0.7' // зависимость от SLF4J для логирования
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
 
 test {
