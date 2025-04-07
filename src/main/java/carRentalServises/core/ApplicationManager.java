@@ -40,9 +40,9 @@ public class ApplicationManager {
         //driver = new ChromeDriver();
        // driver.manage().window().setPosition(new Point(2500, 0));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // неявное
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5)); // ожидание загрузки страницы
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15)); // неявное
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(70)); // ожидание загрузки страницы
+        wait = new WebDriverWait(driver, Duration.ofSeconds(7));
         driver.get("https://car-rental-cymg8.ondigitalocean.app/");
         basePage = new BasePage(driver,wait);
     }

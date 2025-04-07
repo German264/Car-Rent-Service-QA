@@ -162,5 +162,28 @@ public class AuthorizationTests extends TestBase {
                 "Password must include an uppercase letter, a number, and a special character (# ? ! @ $ % ^ & * -)",
                 "Текст сообщения об ошибке не соответствует ожидаемому");
     }
+
+    @Test
+    public void InvalidEmailNegativeTest() {
+        // Переход на страницу авторизации
+        homePage.clickLogin();
+
+        // Создание экземпляра страницы
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
+
+        // Ожидаем, что поле email станет доступным
+        WebElement emailField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+
+        // Ввод корректного пароля и некорректного email
+        loginPage.enterEmail("admingmail.com");
+        loginPage.enterPassword("Yyyyyyy12345!");
+
+        // Клик по кнопке входа
+        loginPage.clickLoginButton();
+
+        // Проверка, что кнопка Admin **не отображается**
+        boolean isAdminVisible = !app.driver.findElements(By.xpath("//a[text()='Admin']")).isEmpty();
+        Assert.assertFalse(isAdminVisible, "Кнопка 'Admin' отображается, но не должна");
+    }
 }
 
