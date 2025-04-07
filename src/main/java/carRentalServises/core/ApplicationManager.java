@@ -19,6 +19,10 @@ public class ApplicationManager {
     public void init() {
         String browser = System.getProperty("browser", "chrome");
 
+        // Выводим в консоль выбранный браузер
+        System.out.println("Browser from System.getProperty('browser'): " + System.getProperty("browser"));
+
+
         // Проверяет значение переменной browser и в зависимости от результата инициализирует нужный драйвер
         switch (browser.toLowerCase()) {
             case "firefox":
@@ -34,12 +38,12 @@ public class ApplicationManager {
                 driver = new ChromeDriver();
         }
         //driver = new ChromeDriver();
-        driver.manage().window().setPosition(new Point(2500, 0));
+       // driver.manage().window().setPosition(new Point(2500, 0));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // неявное
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5)); // ожидание загрузки страницы
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://demoqa.com/");
+        driver.get("https://car-rental-cymg8.ondigitalocean.app/");
         basePage = new BasePage(driver,wait);
     }
 

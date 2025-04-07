@@ -1,15 +1,12 @@
-package CarRentalServise.Admin;
+package CarRentalServises.Admin;
 
-
-import CarRentalServise.core.TestBase;
+import CarRentalServises.core.TestBase;
 import carRentalServises.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class AuthorizationTests extends TestBase {
 
@@ -25,7 +22,7 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Ожидаем, пока заголовок "Login" станет видимым
-        WebElement loginHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[text()='Login']")));
+        WebElement loginHeader = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[text()='Login']")));
 
         // Проверка, что заголовок "Login" отображается
         Assert.assertTrue(loginHeader.isDisplayed(), "Заголовок 'Login' отсутствует");
@@ -37,24 +34,24 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Создание экземпляра страницы
-        LoginPage loginPage = new LoginPage(driver, wait);
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
 
         // Ожидание, пока форма логина загрузится
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
 
         // Ожидание, пока поле email будет отображаться
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        WebElement emailField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
         Assert.assertTrue(emailField.isDisplayed(), "Поле для ввода email не отображается");
 
         // Ожидание, пока поле пароля будет отображаться
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
+        WebElement passwordField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
         Assert.assertTrue(passwordField.isDisplayed(), "Поле для ввода пароля не отображается");
 
         // Проверка, что кнопка логина неактивна при пустых полях
         Assert.assertFalse(loginPage.isLoginButtonEnabled(), "Кнопка 'Login' должна быть неактивной при пустом email и пароле");
 
         // Проверка, что кнопка логина отображается
-        WebElement loginButton = wait.until(ExpectedConditions.presenceOfElementLocated(
+        WebElement loginButton = app.wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//button[@type='submit' and text()='Login']")
         ));
         Assert.assertTrue(loginButton.isDisplayed(), "Кнопка 'Login' должна быть видна");
@@ -67,10 +64,10 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Создание экземпляра страницы
-        LoginPage loginPage = new LoginPage(driver, wait);
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
 
         // Ожидание появления поля для ввода email
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
+        app.wait.until(ExpectedConditions.presenceOfElementLocated(By.name("email")));
 
         // Ввод данных в поля email и пароль
         loginPage.enterEmail("admin@gmail.com");
@@ -86,9 +83,9 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Создание экземпляра страницы
-        LoginPage loginPage = new LoginPage(driver, wait);
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
 
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        WebElement emailField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
 
         // Ввод корректных данных администратора
         loginPage.enterEmail("admin@gmail.com");
@@ -98,7 +95,7 @@ public class AuthorizationTests extends TestBase {
         loginPage.clickLoginButton();
 
         // Ожидание, пока появится кнопка Admin
-        WebElement adminButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Admin']")));
+        WebElement adminButton = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Admin']")));
 
         // Проверка, что кнопка Admin отображается и кликабельна
         Assert.assertTrue(adminButton.isDisplayed(), "Кнопка 'Admin' не отображается после входа");
@@ -111,10 +108,10 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Создание экземпляра страницы
-        LoginPage loginPage = new LoginPage(driver, wait);
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
 
         // Ожидаем, что поле пароля станет доступным
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
+        WebElement passwordField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
 
         // Вводим пароль
         passwordField.sendKeys("Yyyyyyy12345!");
@@ -129,10 +126,10 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Создание экземпляра страницы
-        LoginPage loginPage = new LoginPage(driver, wait);
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
 
         // Ожидаем, что поле email станет доступным
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        WebElement emailField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
 
         // Вводим email
         loginPage.enterEmail("admin@gmail.com");
@@ -147,10 +144,10 @@ public class AuthorizationTests extends TestBase {
         homePage.clickLogin();
 
         // Создание экземпляра страницы
-        LoginPage loginPage = new LoginPage(driver, wait);
+        LoginPage loginPage = new LoginPage(app.driver, app.wait);
 
         // Ожидаем, что поле email станет доступным
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
+        WebElement emailField = app.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
 
         // Ввод корректного email и некорректного пароля
         loginPage.enterEmail("admin@gmail.com");

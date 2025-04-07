@@ -21,5 +21,6 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 test {
+    systemProperty 'browser', project.hasProperty('browser') ? project.browser : 'chrome'
     useTestNG()
 }
